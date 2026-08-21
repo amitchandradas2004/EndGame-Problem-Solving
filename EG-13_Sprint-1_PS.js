@@ -14,7 +14,7 @@ function isLeapYear(year) {
   }
   return year % 4 === 0;
 }
-console.log(isLeapYear(2024));
+// console.log(isLeapYear(2024));
 // Expected Input: 2024
 // Expected Output: true
 
@@ -27,7 +27,13 @@ console.log(isLeapYear(2024));
  */
 function generateFibonacci(n) {
   // Write your code here
+  const fibonacci = [0, 1];
+  for (let i = 2; i < n; i++) {
+    fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+  }
+  return fibonacci.slice(0, n);
 }
+// console.log(generateFibonacci(7));
 
 // Expected Input: 7
 // Expected Output: [0, 1, 1, 2, 3, 5, 8]
