@@ -6,8 +6,15 @@
  */
 function isLeapYear(year) {
   // Write your code here
+  if (year % 400 === 0) {
+    return true;
+  }
+  if (year % 100 === 0) {
+    return false;
+  }
+  return year % 4 === 0;
 }
-
+console.log(isLeapYear(2024));
 // Expected Input: 2024
 // Expected Output: true
 
