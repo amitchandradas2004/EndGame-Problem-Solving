@@ -1,52 +1,55 @@
 // 01. Check if a Year is a Leap Year
-// Create a validation function that accepts an integer representing a calendar year and determines whether it is a leap year based on standard calendar rules (divisible by 4, except for end-of-century years, which must be divisible by 400).
+
 /**
  * @param {number} year
  * @return {boolean}
  */
 function isLeapYear(year) {
-  // Write your code here
   if (year % 400 === 0) {
     return true;
   }
+
   if (year % 100 === 0) {
     return false;
   }
+
   return year % 4 === 0;
 }
-// console.log(isLeapYear(2024));
-// Expected Input: 2024
+
+console.log(isLeapYear(2024));
 // Expected Output: true
 
-// ******************************************************************
+// ************************************************************
+
 // 02. Generate Fibonacci Sequence Up to N Terms
-// Write a mathematical function that takes an integer n and returns an array containing the first n numbers of the Fibonacci sequence starting from 0 and 1.
+
 /**
  * @param {number} n
  * @return {number[]}
  */
 function generateFibonacci(n) {
-  // Write your code here
   const fibonacci = [0, 1];
+
   for (let i = 2; i < n; i++) {
     fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
   }
+
   return fibonacci.slice(0, n);
 }
-// console.log(generateFibonacci(7));
 
-// Expected Input: 7
+console.log(generateFibonacci(7));
 // Expected Output: [0, 1, 1, 2, 3, 5, 8]
-// ******************************************************************
+
+// ************************************************************
+
 // 03. Calculate the Greatest Common Divisor (GCD)
-// Implement a function that computes the Greatest Common Divisor (GCD) of two non-negative integers using Euclid's algorithm.
+
 /**
  * @param {number} a
  * @param {number} b
  * @return {number}
  */
 function findGCD(a, b) {
-  // Write your code here
   while (b !== 0) {
     const remainder = a % b;
     a = b;
@@ -57,108 +60,205 @@ function findGCD(a, b) {
 }
 
 console.log(findGCD(48, 18));
-// Expected Input: 48, 18
 // Expected Output: 6
 
-// ******************************************************************
+// ************************************************************
 
 // 04. Calculate the Least Common Multiple (LCM)
-// Construct a math function that calculates the Least Common Multiple (LCM) of two positive integers using their Greatest Common Divisor.
+
 /**
  * @param {number} a
  * @param {number} b
  * @return {number}
  */
 function findLCM(a, b) {
-  // Write your code here
+  return (a * b) / findGCD(a, b);
 }
 
-// Expected Input: 12, 18
+console.log(findLCM(12, 18));
 // Expected Output: 36
 
-// ******************************************************************
+// ************************************************************
 
 // 05. Check if a Number is Prime
-// Build a primality testing function that evaluates whether a given positive integer is a prime number.
+
 /**
  * @param {number} num
  * @return {boolean}
  */
 function isPrime(num) {
-  // Write your code here
+  if (num < 2) {
+    return false;
+  }
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
-// Expected Input: 29
+console.log(isPrime(29));
 // Expected Output: true
 
-// ******************************************************************
+// ************************************************************
 
 // 06. Merge Two Sorted Arrays into One Sorted Array
-// Create a function that accepts two pre-sorted arrays of numbers and merges them into a single sorted array without re-sorting the combined result.
+
 /**
  * @param {number[]} arr1
  * @param {number[]} arr2
  * @return {number[]}
  */
 function mergeSortedArrays(arr1, arr2) {
-  // Write your code here
+  const result = [];
+
+  let i = 0;
+  let j = 0;
+
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] <= arr2[j]) {
+      result.push(arr1[i]);
+      i++;
+    } else {
+      result.push(arr2[j]);
+      j++;
+    }
+  }
+
+  while (i < arr1.length) {
+    result.push(arr1[i]);
+    i++;
+  }
+
+  while (j < arr2.length) {
+    result.push(arr2[j]);
+    j++;
+  }
+
+  return result;
 }
 
-// Expected Input: [1, 3, 5], [2, 4, 6]
+console.log(mergeSortedArrays([1, 3, 5], [2, 4, 6]));
 // Expected Output: [1, 2, 3, 4, 5, 6]
 
-// ******************************************************************
+// ************************************************************
+
 // 07. Find the Median of an Unsorted Array
-// Write a function that calculates the median value of an unsorted array of numbers. If the array length is even, return the average of the two middle elements.
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 function findMedian(nums) {
-  // Write your code here
+  const sortedNums = [...nums].sort((a, b) => a - b);
+
+  const middle = Math.floor(sortedNums.length / 2);
+
+  if (sortedNums.length % 2 === 0) {
+    return (sortedNums[middle - 1] + sortedNums[middle]) / 2;
+  }
+
+  return sortedNums[middle];
 }
 
-// Expected Input: [7, 1, 3, 4, 9]
+console.log(findMedian([7, 1, 3, 4, 9]));
 // Expected Output: 4
 
-// ******************************************************************
+// ************************************************************
+
 // 08. Find the Second Largest Number in an Array
-// Construct an efficient scanning function that processes an unsorted array of numbers and extracts the second distinct largest element.
+
 /**
  * @param {number[]} nums
  * @return {number|null}
  */
 function findSecondLargest(nums) {
-  // Write your code here
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (const num of nums) {
+    if (num > largest) {
+      secondLargest = largest;
+      largest = num;
+    } else if (num > secondLargest && num !== largest) {
+      secondLargest = num;
+    }
+  }
+
+  return secondLargest === -Infinity ? null : secondLargest;
 }
 
-// Expected Input: [10, 20, 4, 45, 99, 99]
+console.log(findSecondLargest([10, 20, 4, 45, 99, 99]));
 // Expected Output: 45
 
-// ******************************************************************
+// ************************************************************
+
 // 09. Find Most Frequent Element (Mode) in an Array
-// Develop a frequency detection function that identifies and returns the element that appears most often in an array.
+
 /**
  * @param {Array} arr
  * @return {*}
  */
 function findMode(arr) {
-  // Write your code here
+  const frequency = new Map();
+
+  let mode = arr[0];
+  let maxFrequency = 0;
+
+  for (const element of arr) {
+    const count = (frequency.get(element) || 0) + 1;
+
+    frequency.set(element, count);
+
+    if (count > maxFrequency) {
+      maxFrequency = count;
+      mode = element;
+    }
+  }
+
+  return mode;
 }
 
-// Expected Input: [1, 3, 3, 2, 1, 3, 4]
+console.log(findMode([1, 3, 3, 2, 1, 3, 4]));
 // Expected Output: 3
 
-// ******************************************************************
+// ************************************************************
+
 // 10. Natural Sorting of Strings with Embedded Numbers
-// Design a custom string array sorting function that handles natural numeric order inside strings (so "item2" comes before "item10").
+
 /**
  * @param {string[]} arr
  * @return {string[]}
  */
 function naturalSort(arr) {
-  // Write your code here
+  return [...arr].sort((a, b) => {
+    const partsA = a.match(/(\d+|\D+)/g);
+    const partsB = b.match(/(\d+|\D+)/g);
+
+    const length = Math.min(partsA.length, partsB.length);
+
+    for (let i = 0; i < length; i++) {
+      const partA = partsA[i];
+      const partB = partsB[i];
+
+      const numA = Number(partA);
+      const numB = Number(partB);
+
+      if (!isNaN(numA) && !isNaN(numB)) {
+        if (numA !== numB) {
+          return numA - numB;
+        }
+      } else if (partA !== partB) {
+        return partA.localeCompare(partB);
+      }
+    }
+
+    return partsA.length - partsB.length;
+  });
 }
 
-// Expected Input: ["file10.txt", "file2.txt", "file1.txt"]
+console.log(naturalSort(["file10.txt", "file2.txt", "file1.txt"]));
 // Expected Output: ["file1.txt", "file2.txt", "file10.txt"]
