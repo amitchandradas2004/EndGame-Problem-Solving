@@ -47,8 +47,16 @@ function generateFibonacci(n) {
  */
 function findGCD(a, b) {
   // Write your code here
+  while (b !== 0) {
+    const remainder = a % b;
+    a = b;
+    b = remainder;
+  }
+
+  return a;
 }
 
+console.log(findGCD(48, 18));
 // Expected Input: 48, 18
 // Expected Output: 6
 
