@@ -6,8 +6,10 @@
  * @return {string}
  */
 function reverseString(str) {
-  // Write your code here
+  return str.split("").reverse().join("");
 }
+
+console.log(reverseString("hello"));
 
 // Expected Input: "hello"
 // Expected Output: "olleh"
@@ -19,8 +21,18 @@ function reverseString(str) {
  * @return {number}
  */
 function findMax(nums) {
-  // Write your code here
+  let max = nums[0];
+
+  for (let num of nums) {
+    if (num > max) {
+      max = num;
+    }
+  }
+
+  return max;
 }
+
+console.log(findMax([3, 7, 2, 9, 5]));
 
 // Expected Input: [3, 7, 2, 9, 5]
 // Expected Output: 9
@@ -31,8 +43,12 @@ function findMax(nums) {
  * @return {boolean}
  */
 function isPalindrome(str) {
-  // Write your code here
+  const reversed = str.split("").reverse().join("");
+
+  return str === reversed;
 }
+
+console.log(isPalindrome("racecar"));
 
 // Expected Input: "racecar"
 // Expected Output: true
@@ -43,8 +59,16 @@ function isPalindrome(str) {
  * @return {number}
  */
 function sumArray(nums) {
-  // Write your code here
+  let sum = 0;
+
+  for (let num of nums) {
+    sum += num;
+  }
+
+  return sum;
 }
+
+console.log(sumArray([10, 20, 30, 40]));
 
 // Expected Input: [10, 20, 30, 40]
 // Expected Output: 100
@@ -56,8 +80,19 @@ function sumArray(nums) {
  * @return {number}
  */
 function countVowels(str) {
-  // Write your code here
+  let count = 0;
+  const vowels = "aeiou";
+
+  for (let char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+
+  return count;
 }
+
+console.log(countVowels("javascript"));
 
 // Expected Input: "javascript"
 // Expected Output: 3
@@ -69,8 +104,22 @@ function countVowels(str) {
  * @return {number[]}
  */
 function twoSum(nums, target) {
-  // Write your code here
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    }
+
+    map.set(nums[i], i);
+  }
+
+  return [];
 }
+
+console.log(twoSum([2, 7, 11, 15], 9));
 
 // Expected Input: [2, 7, 11, 15], 9
 // Expected Output: [0, 1]
@@ -81,8 +130,20 @@ function twoSum(nums, target) {
  * @return {Array}
  */
 function flattenArray(arr) {
-  // Write your code here
+  const result = [];
+
+  for (let item of arr) {
+    if (Array.isArray(item)) {
+      result.push(...flattenArray(item));
+    } else {
+      result.push(item);
+    }
+  }
+
+  return result;
 }
+
+console.log(flattenArray([1, [2, [3, 4], 5]]));
 // Expected Input: [1, [2, [3, 4], 5]]
 // Expected Output: [1, 2, 3, 4, 5]
 
@@ -93,8 +154,22 @@ function flattenArray(arr) {
  * @return {string[][]}
  */
 function groupAnagrams(strs) {
-  // Write your code here
+  const groups = new Map();
+
+  for (let str of strs) {
+    const key = str.split("").sort().join("");
+
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
+
+    groups.get(key).push(str);
+  }
+
+  return Array.from(groups.values());
 }
+
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 
 // Expected Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
 // Expected Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
@@ -105,8 +180,26 @@ function groupAnagrams(strs) {
  * @return {number}
  */
 function lengthOfLongestSubstring(s) {
-  // Write your code here
+  const seen = new Set();
+
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    while (seen.has(s[right])) {
+      seen.delete(s[left]);
+      left++;
+    }
+
+    seen.add(s[right]);
+
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
 }
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
 
 // Expected Input: "abcabcbb"
 // Expected Output: 3
@@ -117,8 +210,36 @@ function lengthOfLongestSubstring(s) {
  * @return {Object}
  */
 function deepClone(obj) {
-  // Write your code here
+  // Handle primitive values and null
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  // Handle arrays
+  if (Array.isArray(obj)) {
+    return obj.map((item) => deepClone(item));
+  }
+
+  // Handle objects
+  const clonedObject = {};
+
+  for (let key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      clonedObject[key] = deepClone(obj[key]);
+    }
+  }
+
+  return clonedObject;
 }
+
+console.log(
+  deepClone({
+    a: 1,
+    b: {
+      c: 2,
+    },
+  }),
+);
 
 // Expected Input: { a: 1, b: { c: 2 } }
 // Expected Output: { a: 1, b: { c: 2 } }
