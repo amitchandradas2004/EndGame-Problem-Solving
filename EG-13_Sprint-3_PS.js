@@ -220,7 +220,18 @@ var subarraySum = function (nums, k) {
  * @return {number[]}
  */
 var topKFrequent = function (nums, k) {
-  // your code goes here
+  const frequency = new Map();
+
+  // Count frequencies
+  for (const num of nums) {
+    frequency.set(num, (frequency.get(num) || 0) + 1);
+  }
+
+  // Sort numbers by frequency
+  const sorted = [...frequency.entries()].sort((a, b) => b[1] - a[1]);
+
+  // Return top k numbers
+  return sorted.slice(0, k).map(([num]) => num);
 };
 
 // Expected Input: [1,1,1,2,2,3], 2
