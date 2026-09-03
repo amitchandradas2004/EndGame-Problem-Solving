@@ -86,7 +86,21 @@ var isAnagram = function (s, t) {
  * @return {boolean}
  */
 var canConstruct = function (ransomNote, magazine) {
-  // your code goes here
+  const count = {};
+
+  for (const char of magazine) {
+    count[char] = (count[char] || 0) + 1;
+  }
+
+  for (const char of ransomNote) {
+    if (!count[char]) {
+      return false;
+    }
+
+    count[char]--;
+  }
+
+  return true;
 };
 
 // Expected Input: "aa", "aab"
