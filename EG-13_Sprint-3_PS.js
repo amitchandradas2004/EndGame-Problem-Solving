@@ -243,7 +243,26 @@ var topKFrequent = function (nums, k) {
  * @return {number}
  */
 var longestConsecutive = function (nums) {
-  // your code goes here
+  const numSet = new Set(nums);
+  let longest = 0;
+
+  for (const num of numSet) {
+    // Only start counting if num is the beginning
+    // of a consecutive sequence
+    if (!numSet.has(num - 1)) {
+      let currentNum = num;
+      let currentLength = 1;
+
+      while (numSet.has(currentNum + 1)) {
+        currentNum++;
+        currentLength++;
+      }
+
+      longest = Math.max(longest, currentLength);
+    }
+  }
+
+  return longest;
 };
 
 // Expected Input: [100, 4, 200, 1, 3, 2]
