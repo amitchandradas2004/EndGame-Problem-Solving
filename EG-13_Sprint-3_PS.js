@@ -28,7 +28,21 @@ var containsDuplicate = function (nums) {
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function (nums) {
-  // your code goes here
+  let position = 0;
+
+  // Move all non-zero elements to the front
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[position] = nums[i];
+      position++;
+    }
+  }
+
+  // Fill the remaining positions with zero
+  while (position < nums.length) {
+    nums[position] = 0;
+    position++;
+  }
 };
 
 // Expected Input: [0, 1, 0, 3, 12]
