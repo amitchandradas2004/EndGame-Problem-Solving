@@ -187,7 +187,27 @@ var threeSum = function (nums) {
  * @return {number}
  */
 var subarraySum = function (nums, k) {
-  // your code goes here
+  const prefixSumCount = new Map();
+
+  // There is one way to have a prefix sum of 0
+  prefixSumCount.set(0, 1);
+
+  let prefixSum = 0;
+  let result = 0;
+
+  for (const num of nums) {
+    prefixSum += num;
+
+    // If prefixSum - k exists,
+    // then a subarray with sum k exists
+    if (prefixSumCount.has(prefixSum - k)) {
+      result += prefixSumCount.get(prefixSum - k);
+    }
+
+    prefixSumCount.set(prefixSum, (prefixSumCount.get(prefixSum) || 0) + 1);
+  }
+
+  return result;
 };
 
 // Expected Input: [1, 1, 1], 2
