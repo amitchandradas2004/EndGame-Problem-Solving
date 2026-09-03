@@ -6,6 +6,17 @@
  */
 var containsDuplicate = function (nums) {
   // your code goes here
+  const seen = new Set();
+
+  for (const num of nums) {
+    if (seen.has(num)) {
+      return true;
+    }
+
+    seen.add(num);
+  }
+
+  return false;
 };
 
 //  Expected Input: [1, 2, 3, 1]
