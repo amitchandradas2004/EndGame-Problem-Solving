@@ -274,7 +274,26 @@ var longestConsecutive = function (nums) {
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var sortColors = function (nums) {
-  // your code goes here
+  let left = 0;
+  let current = 0;
+  let right = nums.length - 1;
+
+  while (current <= right) {
+    if (nums[current] === 0) {
+      // Swap current with left
+      [nums[left], nums[current]] = [nums[current], nums[left]];
+
+      left++;
+      current++;
+    } else if (nums[current] === 1) {
+      current++;
+    } else {
+      // nums[current] === 2
+      [nums[current], nums[right]] = [nums[right], nums[current]];
+
+      right--;
+    }
+  }
 };
 
 // Expected Input: [2, 0, 2, 1, 1, 0]
