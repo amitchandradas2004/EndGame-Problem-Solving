@@ -79,7 +79,20 @@ var wordPattern = function (pattern, s) {
  * @param {string} t
  * @return {character}
  */
-var findTheDifference = function (s, t) {};
+var findTheDifference = function (s, t) {
+  let result = 0;
+
+  // XOR all characters from both strings
+  for (const char of s) {
+    result ^= char.charCodeAt(0);
+  }
+
+  for (const char of t) {
+    result ^= char.charCodeAt(0);
+  }
+
+  return String.fromCharCode(result);
+};
 // Expected Input: "abcd", "abcde"
 // Expected Output: "e"
 // 04. Reverse Linked List
