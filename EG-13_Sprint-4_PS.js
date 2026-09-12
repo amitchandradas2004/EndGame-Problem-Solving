@@ -161,7 +161,19 @@ const reversedHead = reverseList(head);
  * @param {ListNode} head
  * @return {ListNode}
  */
-var middleNode = function (head) {};
+var middleNode = function (head) {
+  let slow = head;
+  let fast = head;
+
+  // Fast moves twice as quickly as slow
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  return slow;
+};
+// console.log(middleNode(createLinkedList([1, 2, 3, 4, 5])));
 // Expected Input: [1, 2, 3, 4, 5]
 // Expected Output: [3, 4, 5]
 // 06. Product of Array Except Self
