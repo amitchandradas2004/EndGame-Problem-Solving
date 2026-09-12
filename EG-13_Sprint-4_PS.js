@@ -5,7 +5,32 @@
  * @param {string} t
  * @return {boolean}
  */
-var isIsomorphic = function (s, t) {};
+var isIsomorphic = function (s, t) {
+  if (s.length !== t.length) return false;
+
+  const mapST = {};
+  const mapTS = {};
+
+  for (let i = 0; i < s.length; i++) {
+    const charS = s[i];
+    const charT = t[i];
+
+    // s -> t mapping
+    if (mapST[charS] && mapST[charS] !== charT) {
+      return false;
+    }
+
+    // t -> s mapping
+    if (mapTS[charT] && mapTS[charT] !== charS) {
+      return false;
+    }
+
+    mapST[charS] = charT;
+    mapTS[charT] = charS;
+  }
+
+  return true;
+};
 // Expected Input: "egg", "add"
 // Expected Output: true
 // 02. Word Pattern
