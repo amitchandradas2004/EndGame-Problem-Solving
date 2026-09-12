@@ -352,7 +352,46 @@ var checkInclusion = function (s1, s2) {
  * @param {string} p
  * @return {number[]}
  */
-var findAnagrams = function (s, p) {};
+var findAnagrams = function (s, p) {
+  const result = [];
+
+  if (p.length > s.length) {
+    return result;
+  }
+
+  const countP = new Array(26).fill(0);
+  const countWindow = new Array(26).fill(0);
+
+  // Count characters in p
+  for (const char of p) {
+    countP[char.charCodeAt(0) - 97]++;
+  }
+
+  // First window
+  for (let i = 0; i < p.length; i++) {
+    countWindow[s.charCodeAt(i) - 97]++;
+  }
+
+  if (countP.join("") === countWindow.join("")) {
+    result.push(0);
+  }
+
+  // Sliding window
+  for (let i = p.length; i < s.length; i++) {
+    // Add new character
+    countWindow[s.charCodeAt(i) - 97]++;
+
+    // Remove old character
+    countWindow[s.charCodeAt(i - p.length) - 97]--;
+
+    if (countP.join("") === countWindow.join("")) {
+      result.push(i - p.length + 1);
+    }
+  }
+
+  return result;
+};
+console.log(findAnagrams("cbaebabacd", "abc"));
 
 // Expected Input: "cbaebabacd", "abc"
 // Expected Output: [0, 6]
