@@ -97,11 +97,62 @@ var findTheDifference = function (s, t) {
 // Expected Output: "e"
 // 04. Reverse Linked List
 // Write a transformation function that reverses a singly linked list and returns the new head of the reversed list.
+function ListNode(val, next = null) {
+  this.val = val;
+  this.next = next;
+}
+
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function (head) {};
+var reverseList = function (head) {
+  let previous = null;
+  let current = head;
+
+  while (current !== null) {
+    const nextNode = current.next;
+
+    current.next = previous;
+
+    previous = current;
+    current = nextNode;
+  }
+
+  return previous;
+};
+
+// Helper function: Array -> Linked List
+function createLinkedList(arr) {
+  const dummy = new ListNode(0);
+  let current = dummy;
+
+  for (const value of arr) {
+    current.next = new ListNode(value);
+    current = current.next;
+  }
+
+  return dummy.next;
+}
+
+// Helper function: Linked List -> Array
+function linkedListToArray(head) {
+  const result = [];
+
+  while (head !== null) {
+    result.push(head.val);
+    head = head.next;
+  }
+
+  return result;
+}
+
+// Test
+const head = createLinkedList([1, 2, 3, 4, 5]);
+
+const reversedHead = reverseList(head);
+
+// console.log(linkedListToArray(reversedHead));
 // Expected Input: [1, 2, 3, 4, 5]
 // Expected Output: [5, 4, 3, 2, 1]
 // 05. Middle of the Linked List
