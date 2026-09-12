@@ -182,7 +182,28 @@ var middleNode = function (head) {
  * @param {number[]} nums
  * @return {number[]}
  */
-var productExceptSelf = function (nums) {};
+var productExceptSelf = function (nums) {
+  const result = new Array(nums.length).fill(1);
+
+  // Product of all elements to the left
+  let leftProduct = 1;
+
+  for (let i = 0; i < nums.length; i++) {
+    result[i] = leftProduct;
+    leftProduct *= nums[i];
+  }
+
+  // Product of all elements to the right
+  let rightProduct = 1;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    result[i] *= rightProduct;
+    rightProduct *= nums[i];
+  }
+
+  return result;
+};
+// console.log(productExceptSelf([1, 2, 3, 4]));
 // Expected Input: [1, 2, 3, 4]
 // Expected Output: [24, 12, 8, 6]
 // 07. Remove Nth Node From End of List
