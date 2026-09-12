@@ -213,7 +213,33 @@ var productExceptSelf = function (nums) {
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function (head, n) {};
+var removeNthFromEnd = function (head, n) {
+  // Dummy node handles the case where we remove the head
+  const dummy = {
+    val: 0,
+    next: head,
+  };
+
+  let fast = dummy;
+  let slow = dummy;
+
+  // Move fast n positions ahead
+  for (let i = 0; i < n; i++) {
+    fast = fast.next;
+  }
+
+  // Move both until fast reaches the last node
+  while (fast.next !== null) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+
+  // Remove the target node
+  slow.next = slow.next.next;
+
+  return dummy.next;
+};
+// console.log(removeNthFromEnd(createLinkedList([1, 2, 3, 4, 5]), 2));
 // Expected Input: [1, 2, 3, 4, 5], n = 2
 // Expected Output: [1, 2, 3, 5]
 // 08. Find First and Last Position of Element in Sorted Array
