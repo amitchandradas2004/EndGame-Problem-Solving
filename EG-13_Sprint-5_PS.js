@@ -142,7 +142,7 @@ var invertTree = function (root) {
 
   return root;
 };
-console.log(invertTree(root));
+// console.log(invertTree(root));
 
 // Expected Input: [4, 2, 7, 1, 3, 6, 9]
 // Expected Output: [4, 7, 2, 9, 6, 3, 1]
@@ -153,8 +153,25 @@ console.log(invertTree(root));
  * @return {number[]}
  */
 var productExceptSelf = function (nums) {
-  // your code goes here
+  let result = new Array(nums.length).fill(1);
+
+  let prefix = 1;
+
+  for (let i = 0; i < nums.length; i++) {
+    result[i] = prefix;
+    prefix *= nums[i];
+  }
+
+  let suffix = 1;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    result[i] *= suffix;
+    suffix *= nums[i];
+  }
+
+  return result;
 };
+// console.log(productExceptSelf([1, 2, 3, 4]));
 
 // Expected Input: [1, 2, 3, 4]
 // Expected Output: [24, 12, 8, 6]
