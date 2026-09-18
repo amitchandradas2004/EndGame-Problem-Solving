@@ -330,14 +330,37 @@ var checkSubarraySum = function (nums, k) {
 
 // console.log(checkSubarraySum([23, 2, 4, 6, 7], 6));
 // 10. Daily Temperatures
-// Write a function that determines how many days you must wait after each day to get a warmer temperature. If there is no future warmer day, return 0.
+
+// Write a function that determines how many days you must wait
+// after each day to get a warmer temperature.
+// If there is no future warmer day, return 0.
+
 /**
  * @param {number[]} temperatures
  * @return {number[]}
  */
+
 var dailyTemperatures = function (temperatures) {
-  // your code goes here
+  let result = new Array(temperatures.length).fill(0);
+
+  let stack = [];
+
+  for (let i = 0; i < temperatures.length; i++) {
+    while (
+      stack.length > 0 &&
+      temperatures[i] > temperatures[stack[stack.length - 1]]
+    ) {
+      let previousIndex = stack.pop();
+
+      result[previousIndex] = i - previousIndex;
+    }
+
+    stack.push(i);
+  }
+
+  return result;
 };
 
-// Expected Input: [73, 74, 75, 71, 69, 72, 76, 73]
-// Expected Output: [1, 1, 4, 2, 1, 1, 0, 0]
+// Testing
+
+// console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
