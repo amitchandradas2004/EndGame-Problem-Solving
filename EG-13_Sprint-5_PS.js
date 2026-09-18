@@ -210,14 +210,24 @@ rotate(nums, 3);
 // Expected Input: [1, 2, 3, 4, 5, 6, 7], k = 3
 // Expected Output: [5, 6, 7, 1, 2, 3, 4]
 // 08. Min Stack
-// Design a stack data structure that supports pushing, popping, retrieving the top element, and retrieving the minimum element in constant time.
+
+// Design a stack data structure that supports pushing, popping,
+// retrieving the top element, and retrieving the minimum element
+// in constant time.
+
 /**
  * @return {void}
  */
+
 var MinStack = function () {
   this.stack = [];
   this.minStack = [];
 };
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
 
 MinStack.prototype.push = function (val) {
   this.stack.push(val);
@@ -230,6 +240,10 @@ MinStack.prototype.push = function (val) {
   }
 };
 
+/**
+ * @return {void}
+ */
+
 MinStack.prototype.pop = function () {
   let value = this.stack.pop();
 
@@ -238,21 +252,37 @@ MinStack.prototype.pop = function () {
   }
 };
 
+/**
+ * @return {number}
+ */
+
 MinStack.prototype.top = function () {
   return this.stack[this.stack.length - 1];
 };
 
+/**
+ * @return {number}
+ */
+
 MinStack.prototype.getMin = function () {
   return this.minStack[this.minStack.length - 1];
 };
-// console.log(MinStack);
-/**
- * @param {number} val
- * @return {void}
- */
-MinStack.prototype.push = function (val) {
-  // your code goes here
-};
+
+// Testing
+
+let minStack = new MinStack();
+
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+
+// console.log(minStack.getMin()); // -3
+
+minStack.pop();
+
+// console.log(minStack.getMin()); // -2
+
+// console.log(minStack.top()); // 0
 
 // Expected Input: ["push(-2)", "push(0)", "push(-3)", "getMin()", "pop()", "getMin()"]
 // Expected Output: [-3, -2]
