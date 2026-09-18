@@ -86,16 +86,40 @@ var searchInsert = function (nums, target) {
 
 // Expected Input: [1, 3, 5, 6], target = 5
 // Expected Output: 2
-// 04. Maximum Depth of Binary Tree
-// Write a function that calculates the maximum depth of a binary tree. The depth is the number of nodes along the longest path from the root node to a leaf node.
-/**
- * @param {TreeNode} root
- * @return {number}
- */
 var maxDepth = function (root) {
-  // your code goes here
+  if (root === null) {
+    return 0;
+  }
+
+  let leftDepth = maxDepth(root.left);
+  let rightDepth = maxDepth(root.right);
+
+  return 1 + Math.max(leftDepth, rightDepth);
 };
 
+let root = {
+  val: 3,
+  left: {
+    val: 9,
+    left: null,
+    right: null,
+  },
+  right: {
+    val: 20,
+    left: {
+      val: 15,
+      left: null,
+      right: null,
+    },
+    right: {
+      val: 7,
+      left: null,
+      right: null,
+    },
+  },
+};
+
+// console.log(maxDepth(root)); 
 // Expected Input: [3, 9, 20, null, null, 15, 7]
 // Expected Output: 3
 // 05. Invert Binary Tree
