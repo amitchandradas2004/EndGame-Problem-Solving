@@ -287,18 +287,48 @@ minStack.pop();
 // Expected Input: ["push(-2)", "push(0)", "push(-3)", "getMin()", "pop()", "getMin()"]
 // Expected Output: [-3, -2]
 // 09. Continuous Subarray Sum
-// Write a function that determines whether an array contains a continuous subarray of at least two elements whose sum is a multiple of k.
+
+// Write a function that determines whether an array contains
+// a continuous subarray of at least two elements whose sum
+// is a multiple of k.
+
 /**
  * @param {number[]} nums
  * @param {number} k
  * @return {boolean}
  */
+
 var checkSubarraySum = function (nums, k) {
-  // your code goes here
+  let remainderMap = new Map();
+
+  // Remainder 0 exists before the array starts
+  remainderMap.set(0, -1);
+
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+
+    let remainder = sum % k;
+
+    if (remainderMap.has(remainder)) {
+      let previousIndex = remainderMap.get(remainder);
+
+      // Subarray must contain at least 2 elements
+      if (i - previousIndex >= 2) {
+        return true;
+      }
+    } else {
+      remainderMap.set(remainder, i);
+    }
+  }
+
+  return false;
 };
 
-// Expected Input: [23, 2, 4, 6, 7], k = 6
-// Expected Output: true
+// Testing
+
+// console.log(checkSubarraySum([23, 2, 4, 6, 7], 6));
 // 10. Daily Temperatures
 // Write a function that determines how many days you must wait after each day to get a warmer temperature. If there is no future warmer day, return 0.
 /**
