@@ -119,7 +119,7 @@ let root = {
   },
 };
 
-// console.log(maxDepth(root)); 
+// console.log(maxDepth(root));
 // Expected Input: [3, 9, 20, null, null, 15, 7]
 // Expected Output: 3
 // 05. Invert Binary Tree
@@ -129,8 +129,20 @@ let root = {
  * @return {TreeNode}
  */
 var invertTree = function (root) {
-  // your code goes here
+  if (root === null) {
+    return null;
+  }
+
+  let temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+
+  invertTree(root.left);
+  invertTree(root.right);
+
+  return root;
 };
+console.log(invertTree(root));
 
 // Expected Input: [4, 2, 7, 1, 3, 6, 9]
 // Expected Output: [4, 7, 2, 9, 6, 3, 1]
