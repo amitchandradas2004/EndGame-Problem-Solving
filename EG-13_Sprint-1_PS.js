@@ -19,7 +19,7 @@ function isLeapYear(year) {
 console.log(isLeapYear(2024));
 // Expected Output: true
 
-// ************************************************************
+// ************************************
 
 // 02. Generate Fibonacci Sequence Up to N Terms
 
@@ -40,7 +40,7 @@ function generateFibonacci(n) {
 console.log(generateFibonacci(7));
 // Expected Output: [0, 1, 1, 2, 3, 5, 8]
 
-// ************************************************************
+// ************************************
 
 // 03. Calculate the Greatest Common Divisor (GCD)
 
@@ -62,7 +62,7 @@ function findGCD(a, b) {
 console.log(findGCD(48, 18));
 // Expected Output: 6
 
-// ************************************************************
+// ************************************
 
 // 04. Calculate the Least Common Multiple (LCM)
 
@@ -78,8 +78,7 @@ function findLCM(a, b) {
 console.log(findLCM(12, 18));
 // Expected Output: 36
 
-// ************************************************************
-
+// ************************************
 // 05. Check if a Number is Prime
 
 /**
@@ -103,7 +102,7 @@ function isPrime(num) {
 console.log(isPrime(29));
 // Expected Output: true
 
-// ************************************************************
+// ************************************
 
 // 06. Merge Two Sorted Arrays into One Sorted Array
 
@@ -144,7 +143,7 @@ function mergeSortedArrays(arr1, arr2) {
 console.log(mergeSortedArrays([1, 3, 5], [2, 4, 6]));
 // Expected Output: [1, 2, 3, 4, 5, 6]
 
-// ************************************************************
+// ************************************
 
 // 07. Find the Median of an Unsorted Array
 
@@ -167,7 +166,7 @@ function findMedian(nums) {
 console.log(findMedian([7, 1, 3, 4, 9]));
 // Expected Output: 4
 
-// ************************************************************
+// ************************************
 
 // 08. Find the Second Largest Number in an Array
 
@@ -194,7 +193,7 @@ function findSecondLargest(nums) {
 console.log(findSecondLargest([10, 20, 4, 45, 99, 99]));
 // Expected Output: 45
 
-// ************************************************************
+// ************************************
 
 // 09. Find Most Frequent Element (Mode) in an Array
 
@@ -225,7 +224,7 @@ function findMode(arr) {
 console.log(findMode([1, 3, 3, 2, 1, 3, 4]));
 // Expected Output: 3
 
-// ************************************************************
+// ************************************
 
 // 10. Natural Sorting of Strings with Embedded Numbers
 
